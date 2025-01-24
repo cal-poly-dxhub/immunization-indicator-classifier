@@ -37,40 +37,57 @@ for index, obs in enumerate(obs_and_snomed.rows(named=True)):
     for d in diseases:
         for a in attributes:
 
-            system_prompt = '''
-                            You are an expert doctor in medicine. You know what medicatations are best for what diseases. 
-                            You are tasked to help students understand medications and symptoms associated 
-                            with different medical condiitions.
-                            '''
+            # system_prompt = '''
+            #                 You are an expert doctor in medicine. You know what medicatations are best for what diseases. 
+            #                 You are tasked to help students understand medications and symptoms associated 
+            #                 with different medical condiitions.
+            #                 '''
             
-            assistant_prompt = f'''
-                            Please only list {a} that are directly relavant and please exclude common {a}.
-                            Only list the {a} in likey to unlikey order and don't list anything else.
+            # assistant_prompt = f'''
+            #                 Please only list {a} that are directly relavant and please exclude common {a}.
+            #                 Only list the {a} in likey to unlikey order and don't list anything else.
 
-                            Please respond in this format:
-                            {{
-                                {a}: [{a} 1, {a} 2, {a} 3]
-                            }}             
-                            '''
+            #                 Please respond in this format:
+            #                 {{
+            #                     {a}: [{a} 1, {a} 2, {a} 3]
+            #                 }}             
+            #                 '''
 
-            user_prompt = f'''What are the actual {a} that someone with {d} may be taking/having.'''
+            # user_prompt = f'''What are the actual {a} that someone with {d} may be taking/having.'''
+
+
+            prompt = f'''
+                You are an expert doctor in medicine. You know what medicatations are best for what diseases. 
+                You are tasked to help students understand medications and symptoms associated 
+                with different medical condiitions.
+
+                Please only list {a} that are directly relavant and please exclude common {a}.
+                Only list the {a} in likey to unlikey order and don't list anything else.
+
+                Please respond in this format:
+                {{
+                    {a}: [{a} 1, {a} 2, {a} 3]
+                }}      
+
+                What are the actual {a} that someone with {d} may be taking/having.
+            '''
             
             native_request = {
                 "anthropic_version": "bedrock-2023-05-31",
                 "max_tokens": 600,
                 "temperature": 0.5,
                 "messages": [
-                    {
-                        "role": "system",
-                        "content": [{"type": "text", "text": system_prompt}]
-                    },
-                    {
-                        "role": "assistant",
-                        "content": [{"type": "text", "text": assistant_prompt}]
-                    },
+                    # {
+                    #     "role": "system",
+                    #     "content": [{"type": "text", "text": system_prompt}]
+                    # },
+                    # {
+                    #     "role": "assistant",
+                    #     "content": [{"type": "text", "text": assistant_prompt}]
+                    # },
                     {
                         "role": "user",
-                        "content": [{"type": "text", "text": user_prompt}]
+                        "content": [{"type": "text", "text": prompt}]
                     }
                 ]
             }
@@ -80,20 +97,22 @@ for index, obs in enumerate(obs_and_snomed.rows(named=True)):
         
         try:
             # invoke the model with the request
-            response = client.invoke_model(model_id=model_id, body=request)
+            response = client.invoke_model(modelId=model_id, body=request)
         except (ClientError, Exception) as e:
             print(f"Error: Unable to invoke '{model_id}. Reason: {e}'")
             exit(1)
 
-    model_response = json.loads(response["body"].read(response))
-    response_text = model_response["content"][0]["text"]
+        print(response)
 
-    print(model_response)
-    print(response_text)
+        model_response = json.loads(response["body"].read(response))
+        response_text = model_response["content"][0]["text"]
+
+        print(model_response)
+        print(response_text)
 
 
-    if index >= 2:
-        break
+        if index >= 2:
+            break
 
 
 
