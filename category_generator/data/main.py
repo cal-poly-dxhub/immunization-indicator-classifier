@@ -4,7 +4,7 @@ import json
 import re
 from botocore.exceptions import ClientError
 from boto3.dynamodb.types import TypeSerializer
-
+import time
 
 '''
     NOTE:
@@ -32,6 +32,12 @@ obs_and_snomed = df_csv.select("Observation Title", "SNOMED (Code)", "Observatio
 
 disease_dict = {}
 for index, obs in enumerate(obs_and_snomed.rows(named=True)):
+    # use this when re_downloading and if rate limits break the flow
+    # if index < 266: 
+    #     continue
+    # if index % 4 == 0:
+    #     time.sleep(3)
+
     # clean the data
     obs["SNOMED (Code)"] = re.sub(r"\d+", "", obs["SNOMED (Code)"]) # remove numbers
     obs["SNOMED (Code)"] = (re.sub(r"(\s{2,}|\n|n/a)", " ", obs["SNOMED (Code)"])).strip() # replace new lines, multple spaces, n/a with a single space and then remove leading/trailing spaces
@@ -39,60 +45,61 @@ for index, obs in enumerate(obs_and_snomed.rows(named=True)):
     
     # 3. Use the newly derived string as an input to derive likely medications and observations / disorders for each row with sample prompts below 
     attributes = ["medications", "observations / symptoms", "disorders"]
-    disease_dict[disease] = []
-    for a in attributes:
+    disease_dict[disease] = []        
+    prompt = f'''
+        You are a world-renowned medical expert specializing in diagnosing and treating diseases. 
+        Your task is to generate concise, JSON-formatted data for multiple attributes of a specific disease or condition.
+
+        For the disease: "{disease}", provide JSON-formatted data for the following attributes — {", ".join(attributes)}. 
+        Use the delimiter "###" to separate the JSON for each attribute.
+
+        Instructions:
+        1. Include only highly specific and evidence-based items directly associated with the disease. Exclude generic, vague, or irrelevant items.
+        2. If an attribute does not apply or has no specific data, respond with "N/A".
+        3. Each attribute’s JSON response must be prefixed by the attribute name, followed by its data.
+        4. Return the result strictly in valid JSON format.
+        5. Do not include any explanations, sentences, or extra text. Use only the delimiter "###" to separate the sections.
+
+        Example Response:
+        {{"medications": ["Aspirin", "Ibuprofen", "Paracetamol", "Amoxicillin"]}} ###
+        {{"observations / symptoms": ["Fever", "Cough", "Headache", "Fatigue"]}} ###
+        {{"disorders": ["Hypertension", "Diabetes Mellitus", "Coronary Artery Disease"]}}
+
+        - If there is no specific data for example:
+        disorders: {{"disorders": "N/A"}} ###
+
+        Now, provide the JSON responses for the disease: "{disease}".
+    '''
         
-        prompt = f'''
-            You are a world-renowned medical expert specializing in diagnosing and treating diseases. 
-            Your task is to generate concise, JSON-formatted data related to a single attribute for a specific disease or condition.
+    native_request = {
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": 600,
+        "temperature": 0.5,
+        "messages": [
+            {
+                "role": "user",
+                "content": [{"type": "text", "text": prompt}]
+            }
+        ]
+    }
 
-            For each of the following attributes — {", ".join(attributes)} — provide only those that are highly specific to the disease or condition in question. 
-            Exclude any generic, common conditions or medications that are not directly related to the disease.
+    # execute the request 
+    request = json.dumps(native_request)
+    try:
+        response = client.invoke_model(modelId=model_id, body=request)
+    except (ClientError, Exception) as e:
+        print(f"Error: Unable to invoke '{model_id}. Reason: {e}'")
+        exit(1)
+    # extract text from the request
+    model_response = json.loads(response["body"].read())
+    response_text = model_response["content"][0]["text"]
 
-            Instructions:
-            1. Provide data only for the attribute: "{a}".
-            2. Include only highly specific and evidence-based items directly associated with the disease. Exclude any generic, vague, or irrelevant items.
-            3. If the attribute does not apply or has no specific data, respond with "N/A".
-            4. Return the result strictly in valid JSON format.
-            5. Do not include any explanations, sentences, or extra text. Respond only with valid DynamoDB-compatible JSON.
-
-
-            Examples:
-            - If the attribute is medications and specific items are "Aspirin" and "Ibuprofen":
-            {{"medications": ["Aspirin", "Ibuprofen"]}}
-            - If the attribute is disorders and there is no specific data:
-            {{"disorders": "N/A"}}
-
-            Given the disease: "{disease}", provide the relevant data for the attribute: "{a}".
-        '''
-        
-        native_request = {
-            "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": 600,
-            "temperature": 0.5,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": [{"type": "text", "text": prompt}]
-                }
-            ]
-        }
-
-        # execute the request 
-        request = json.dumps(native_request)
-        try:
-            response = client.invoke_model(modelId=model_id, body=request)
-        except (ClientError, Exception) as e:
-            print(f"Error: Unable to invoke '{model_id}. Reason: {e}'")
-            exit(1)
-        # extract text from the request
-        model_response = json.loads(response["body"].read())
-        response_text = model_response["content"][0]["text"]
-
-        response_text = re.sub(r"\n", "", response_text)
-        print(obs["Observation Code"], response_text)
-        disease_dict[disease].append(json.loads(response_text))    
-
+    response_text = re.sub(r"\n", "", response_text)
+    print(obs["Observation Code"], response_text)
+    split = response_text.split("###")
+    for s in split:
+        print(s)
+        disease_dict[disease].append(json.loads(s))    
 
     # 4. store the results in a dynamoDB table with key = csdi_code and secondary key category
     # input into dynamodb 
