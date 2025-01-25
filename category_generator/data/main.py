@@ -22,7 +22,8 @@ CSV_DATA = "CDSi ScheduleSupportingData- Coded Observations-508_v4.60_withRSV.cs
 df_csv = pl.scan_csv(CSV_DATA).filter((pl.col("Observation Title").is_not_null()) & (pl.col("PHIN VS (Code)").is_not_null()))
 
 # 2. Combine and de-duplicate Observation Title and SNOMED (Code) columns into meaningful words that will be used to send to LLM
-obs_and_snomed = df_csv.select("Observation Title", "SNOMED (Code)").collect()
+obs_and_snomed = df_csv.select("Observation Title", "SNOMED (Code)", "Observation Code").collect()
+
 disease_dict = {}
 for index, obs in enumerate(obs_and_snomed.rows(named=True)):
     # clean the data
@@ -34,24 +35,6 @@ for index, obs in enumerate(obs_and_snomed.rows(named=True)):
     attributes = ["medications", "observations / symptoms", "disorders"]
     disease_dict[disease] = []
     for a in attributes:
-
-        # prompt = f'''
-        #     You are an expert doctor in medicine. You know what medicatations are best for what diseases. 
-        #     You are tasked to provide concise and very accurate flashcard infomration for students to know
-        #     the {", ".join(attributes)} associated with different medical condiitions.
-
-        #     Please only list {a} that are directly relavant and please exclude common {a} that are not specfic to the disease.
-        #     Only list the {a} in likey to unlikey order and don't list anything else.
-        #     If there is no specific medical condition or disease associated with the provided disease or you don't know, simply respond with
-        #     {{{a}: "N/A"}}      
-
-        #     Else, please respond in this format:
-        #     {{{a}: ["{a} 1", "{a} 2", "{a} 3]"}}      
-
-        #     What are the actual {a} that someone with {disease} may be taking/experiencing.
-
-  #                  Given the disease: "{disease}", what are the likely **{a}** someone with this disease may be taking or experiencing?
-        # '''
         
         prompt = f'''
             You are a world-renowned medical expert specializing in diagnosing and treating diseases. 
@@ -101,16 +84,18 @@ for index, obs in enumerate(obs_and_snomed.rows(named=True)):
         response_text = model_response["content"][0]["text"]
 
         response_text = re.sub(r"\n", "", response_text)
-        print(response_text)
+        print(obs["Observation Code"], response_text)
         disease_dict[disease].append(json.loads(response_text))    
 
 
-
+    # 4. store the results in a dynamoDB table with key = csdi_code and secondary key category
+    # input into dynamodb 
     serializer = TypeSerializer()
     for disease, attributes in disease_dict.items():
         print(attributes)
         dynamo_item = {
-            "diseases": {"S": disease},
+            "csdi_code": {"S": str(obs["Observation Code"])},
+            "disease_name": {"S": disease},
             "medications": serializer.serialize(attributes[0]),
             "observations / symptoms": serializer.serialize(attributes[1]),
             "disorders": serializer.serialize(attributes[2])
