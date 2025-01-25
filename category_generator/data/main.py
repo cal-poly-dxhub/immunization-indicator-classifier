@@ -6,6 +6,12 @@ from botocore.exceptions import ClientError
 from boto3.dynamodb.types import TypeSerializer
 
 
+'''
+    NOTE:
+    the script might error if detects to many requests
+'''
+
+
 diseases_and_attributes = []
 
 # create a Bedrock Runtime client in us-west-2
@@ -92,16 +98,19 @@ for index, obs in enumerate(obs_and_snomed.rows(named=True)):
     # input into dynamodb 
     serializer = TypeSerializer()
     for disease, attributes in disease_dict.items():
-        print(attributes)
-        dynamo_item = {
-            "csdi_code": {"S": str(obs["Observation Code"])},
-            "disease_name": {"S": disease},
-            "medications": serializer.serialize(attributes[0]),
-            "observations / symptoms": serializer.serialize(attributes[1]),
-            "disorders": serializer.serialize(attributes[2])
-        }
+        try:
+            # print(attributes)
+            dynamo_item = {
+                "csdi_code": {"S": str(obs["Observation Code"])},
+                "disease_name": {"S": disease},
+                "medications": serializer.serialize(attributes[0]),
+                "observations / symptoms": serializer.serialize(attributes[1]),
+                "disorders": serializer.serialize(attributes[2])
+            }
 
-        dynamodb.put_item(
-            TableName=diseases_table,
-            Item=dynamo_item
-        )
+            dynamodb.put_item(
+                TableName=diseases_table,
+                Item=dynamo_item
+            )
+        except Exception as e:
+            print(f"Error storing item for csdi_code: {obs["Observation Code"]}. Error {str(e)}")
