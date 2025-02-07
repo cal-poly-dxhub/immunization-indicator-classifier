@@ -25,14 +25,19 @@ def xml_to_dict(element):
   return data
 
 def extract_meds(data: dict) -> list:
-  table = data.get("text",{}).get("table",{})
+  table = data.get("text", {}).get("table", {})
   if table == {}:
     return []
-  
+
   medications: list[str] = []
   rows = table.get("tbody", {}).get("tr", [])
+  if isinstance(rows, dict):
+    rows = [rows]
+
   for row in rows:
     cells = row.get("td", [])
+    if isinstance(cells, dict):
+      cells = [cells]
     if len(cells) >= 4:
       stop_date = cells[1].get("content", "")
       if not stop_date.strip():
@@ -46,15 +51,22 @@ def extract_problems(data: dict) -> list:
     return []
   
   problems: list[str] = []
-  rows: list[any] = table.get("tbody", {}).get("tr", [])
+  rows: any = table.get("tbody", {}).get("tr", [])
+  if isinstance(rows, dict):
+    rows = [rows]
+    
   for row in rows:
-    cells: list[any] = row.get("td", [])
+    cells: any = row.get("td", [])
+    if isinstance(cells, dict):
+      cells = [cells]
+      
     if len(cells) >= 4:
       stop_date: str = cells[1].get("content", "")
       if not stop_date.strip():
         description: str = cells[2].get("content", "")
         description = re.sub(r'\s*\(.*?\)', '', description)
         problems.append(description)
+        
   return problems
 
 def get_patient_meds(filename: str):
@@ -80,9 +92,3 @@ def get_patient_meds(filename: str):
   med_info['medications'] = meds
   med_info['problems'] = problems
   return med_info
-
-with open("out.json" , "w") as f:
-  f.write(json.dumps(get_patient_meds("assets/file4.xml")))
-
-
-#2021-08-01T06:37:45Z
