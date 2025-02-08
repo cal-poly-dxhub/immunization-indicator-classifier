@@ -52,10 +52,15 @@ def snomed_set_with_cdsi_codes(snomed_set : Set[str]) -> Dict[str, str]:
     return snomed_dict
             
 if __name__ == "__main__":
-    TEST_XML_FILE = "Ada662_Sari509_Balistreri607_dbc4a3f7-9c69-4435-3ce3-4e1988ab6b91.xml"
+    # TEST_XML_FILE = "Ada662_Sari509_Balistreri607_dbc4a3f7-9c69-4435-3ce3-4e1988ab6b91.xml"
+    # TEST_XML_FILE = "Adrianne466_Jonnie215_Glover433_99d3b9b2-46c1-ef9e-da70-81ac3d365f52.xml"
+    TEST_XML_FILE = "Alena861_Danna372_Gusikowski974_bd2a8021-2868-6dd2-c17f-bfd7c36fe247.xml"
     set = xml_to_snomed_set(TEST_XML_FILE)
     dictionary  = snomed_set_with_cdsi_codes(set)
     print(dictionary)
+
+
+
 
 
 #! NOTES:
