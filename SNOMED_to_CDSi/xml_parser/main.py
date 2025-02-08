@@ -1,16 +1,18 @@
-from typing import Dict
+from typing import Set, Dict
 from bs4 import BeautifulSoup
 from datetime import datetime
 from collections import defaultdict
 import re
+import boto3
+TABLE_NAME = "snomed-to-cdsi"
+dynamodb = boto3.client('dynamodb')
 
-
-def xml_to_snomed_dict(xml_doc : str) -> Dict[str, str]:
+def xml_to_snomed_set(xml_doc : str) -> Set[str]:
     if not re.search(r'\.xml$', xml_doc):
         raise Exception("XML was not passed in")  
     with open(xml_doc, "r") as xml:
         soup = BeautifulSoup(xml, features="xml")
-        valid_snomed_codes = defaultdict(list)        
+        valid_snomed_codes = set()     
         
         # for each table row tag, validate table data entries and then save relevant data
         date_pattern = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
@@ -20,7 +22,7 @@ def xml_to_snomed_dict(xml_doc : str) -> Dict[str, str]:
             dates = date_pattern.findall(td)
             if len(dates) <= 1 or datetime.strptime(dates[1], "%Y-%m-%dT%H:%M:%SZ") > datetime.now():
                 if re.search(r"snomed", td):
-                    valid_snomed_codes[re.search(r"\d+$", td).group(0)]
+                    valid_snomed_codes.add(re.search(r"\d+$", td).group(0))
 
         # for each entry tag, validate the data entries and then save relevant data
         entries = soup.find_all("entry")
@@ -31,19 +33,29 @@ def xml_to_snomed_dict(xml_doc : str) -> Dict[str, str]:
             if high and (not high.get("value") or not re.search(r'\d', high.get("value")) or datetime.strptime(high.get("value"), "%Y%m%d%H%M%S") > datetime.now()):
                 high = None
             if code and value and not high:
-                valid_snomed_codes[value.get("code")]
+                valid_snomed_codes.add(value.get("code"))
 
-
-        #! LEFT OFF AT XML PARSING
         return valid_snomed_codes
-
-
+    
+def snomed_set_with_cdsi_codes(snomed_set : Set[str]) -> Dict[str, str]:
+    snomed_dict = {}
+    for i, snomed in enumerate(snomed_set):
+        query = dynamodb.query(
+            TableName=TABLE_NAME,
+            KeyConditionExpression='snomed_code = :snomed_code',
+            ExpressionAttributeValues={
+                ':snomed_code': {'S': snomed}
+            }
+        )
+        if query['Items']:
+            snomed_dict[snomed] = [item['cdsi_code']['S'] for item in query["Items"]]
+    return snomed_dict
+            
 if __name__ == "__main__":
     TEST_XML_FILE = "Ada662_Sari509_Balistreri607_dbc4a3f7-9c69-4435-3ce3-4e1988ab6b91.xml"
-    dictionary = xml_to_snomed_dict(TEST_XML_FILE)
-    print(dictionary.keys())
-
-
+    set = xml_to_snomed_set(TEST_XML_FILE)
+    dictionary  = snomed_set_with_cdsi_codes(set)
+    print(dictionary)
 
 
 #! NOTES:
