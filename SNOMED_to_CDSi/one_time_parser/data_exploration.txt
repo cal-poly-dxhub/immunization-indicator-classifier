@@ -1,0 +1,23 @@
+# Data Exploration
+
+#! There are duplicate SNOMEDs, so they map one to many
+#? List of duplicate SNOMEDs
+# {'31323000': 2, '13645005': 2, '87433001': 2, '86406008': 2, '11723008': 2, '165806002': 2, '159138004': 2, '14698002': 2, '24932003': 8, '159282002': 4, '59881000': 2, '44172002': 2, '223366009': 3, '451291000124104': 2, '116859006': 3, '77128003': 2, '62479008': 2, '70995007': 2, '83911000119104': 2, '40108008': 2, '417357006': 2}
+#? code to confirm that SNOMEDs can duplicate 
+# from collections import Counter
+# agg = []
+#         agg += snomeds
+# print({key : val for key, val in Counter(agg).items() if val > 1})
+
+
+#! DB decision: 
+# ? DynamoDB
+# * RDMS 
+# Joins are expensive in lambda
+# * Graph
+# Too much for simple look up
+# * DynamoDB
+# single look up
+# no db mangement
+# serverless
+# can add revesr index later if need be
