@@ -1,0 +1,396 @@
+Coreen424 Arica110 Lebsack687
+=============================
+Race:                White
+Ethnicity:           Non-Hispanic
+Gender:              F
+Age:                 93
+Birth Date:          1931-11-26
+Marital Status:      M
+--------------------------------------------------------------------------------
+ALLERGIES:
+  1937-12-14 -            : Mold (organism)
+  1937-12-14 -            : Allergy to substance (finding)
+--------------------------------------------------------------------------------
+MEDICATIONS:
+  2024-10-24[CURRENT] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2024-10-24[CURRENT] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2024-10-24[CURRENT] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2024-10-24[CURRENT] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2024-09-26[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2024-09-26[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2024-09-26[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2024-09-26[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2024-08-22[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Patient referral for dental care (procedure)
+  2024-08-15[CURRENT] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2024-08-08[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2024-08-08[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2024-08-08[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2024-08-08[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2024-07-11[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Patient referral for dental care (procedure)
+  2024-06-27[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2024-06-27[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2024-06-27[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2024-06-27[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2024-03-21[STOPPED] : Naproxen sodium 220 MG Oral Tablet
+  2024-03-21[STOPPED] : Acetaminophen 325 MG / oxyCODONE Hydrochloride 5 MG Oral Tablet
+  2024-02-29[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2024-02-29[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2024-02-29[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2024-02-29[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-11-30[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-11-30[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-11-30[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-11-30[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-10-12[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2023-09-28[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-09-28[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-09-28[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-09-28[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-08-04[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2023-08-03[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-08-03[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-08-03[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-08-03[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-06-01[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-06-01[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-06-01[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-06-01[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-04-06[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-04-06[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-04-06[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-04-06[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-03-16[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2023-03-02[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-03-02[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-03-02[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-03-02[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2023-01-05[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2023-01-05[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2023-01-05[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2023-01-05[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2022-10-06[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2022-10-06[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2022-10-06[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2022-10-06[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2022-09-08[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2022-09-08[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2022-09-08[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2022-09-08[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2022-08-04[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2022-07-28[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2022-07-28[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2022-07-28[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2022-07-28[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2022-05-05[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2022-05-05[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2022-05-05[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2022-05-05[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2022-02-10[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2022-02-10[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2022-02-10[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2022-02-10[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2022-01-06[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2022-01-06[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2022-01-06[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2022-01-06[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2021-12-23[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2021-12-09[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2021-12-09[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2021-12-09[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2021-12-09[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2021-11-11[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2021-11-11[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2021-11-11[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2021-11-11[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2021-07-23[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2021-07-22[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2021-07-22[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2021-07-22[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2021-07-22[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2021-03-11[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2021-03-11[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2021-03-11[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2021-03-11[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2021-01-28[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Patient referral for dental care (procedure)
+  2021-01-14[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2021-01-14[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2021-01-14[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2021-01-14[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-12-17[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-12-17[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-12-17[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-12-17[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-09-17[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-09-17[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-09-17[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-09-17[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-08-13[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-08-13[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-08-13[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-08-13[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-07-23[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2020-07-16[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-07-16[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-07-16[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-07-16[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-02-13[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2020-02-06[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-02-06[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-02-06[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-02-06[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-01-30[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-01-30[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-01-30[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-01-30[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-01-23[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-01-23[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-01-23[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-01-23[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2020-01-02[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2020-01-02[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2020-01-02[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2020-01-02[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-12-26[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-12-26[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-12-26[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-12-26[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-12-19[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-12-19[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-12-19[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-12-19[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-12-12[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-12-12[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-12-12[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-12-12[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-12-05[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-12-05[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-12-05[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-12-05[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-11-28[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-11-28[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-11-28[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-11-28[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-11-21[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-11-21[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-11-21[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-11-21[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-10-17[STOPPED] : Ibuprofen 200 MG Oral Tablet
+  2019-10-17[STOPPED] : Meperidine Hydrochloride 50 MG Oral Tablet
+  2019-07-12[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2019-07-11[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-07-11[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-07-11[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-07-11[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2019-04-25[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2019-04-25[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2019-04-25[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2019-04-25[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2018-12-06[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2018-11-22[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2018-11-22[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2018-11-22[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2018-11-22[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2018-10-25[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2018-10-25[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2018-10-25[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2018-10-25[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2018-07-12[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2018-07-05[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2018-07-05[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2018-07-05[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2018-07-05[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2018-05-31[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2018-05-31[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2018-05-31[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2018-05-31[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2018-03-15[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2018-03-01[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2018-03-01[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2018-03-01[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2018-03-01[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2018-02-01[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2018-02-01[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2018-02-01[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2018-02-01[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2017-12-14[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Patient referral for dental care (procedure)
+  2017-11-30[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2017-11-30[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2017-11-30[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2017-11-30[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2017-08-31[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2017-08-31[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2017-08-31[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2017-08-31[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2017-06-30[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2017-06-29[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2017-06-29[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2017-06-29[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2017-06-29[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2017-03-02[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2017-03-02[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2017-03-02[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2017-03-02[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2016-07-07[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Gingivitis (disorder)
+  2016-06-30[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2016-06-23[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2016-06-23[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2016-06-23[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2016-06-23[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2016-01-07[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2016-01-07[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2016-01-07[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2016-01-07[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2015-10-15[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2015-10-15[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2015-10-15[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2015-10-15[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2015-08-27[STOPPED] : sodium fluoride 0.0272 MG/MG Oral Gel for Patient referral for dental care (procedure)
+  2015-08-13[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2015-08-13[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2015-08-13[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2015-08-13[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2015-07-16[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2015-07-16[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2015-07-16[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2015-07-16[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2015-06-19[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  2015-06-18[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2015-06-18[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2015-06-18[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2015-06-18[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2014-09-18[STOPPED] : Alendronic acid 10 MG Oral Tablet for Osteoporosis (disorder)
+  2014-09-18[STOPPED] : Acetaminophen 300 MG / Hydrocodone Bitartrate 5 MG Oral Tablet
+  2014-09-18[STOPPED] : amLODIPine 2.5 MG Oral Tablet for Essential hypertension (disorder)
+  2014-09-18[STOPPED] : 72 HR Fentanyl 0.025 MG/HR Transdermal System
+  2014-06-19[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  1999-02-02[CURRENT] : prasugrel 10 MG Oral Tablet
+  1999-02-02[CURRENT] : losartan potassium 50 MG Oral Tablet
+  1999-02-02[CURRENT] : atorvastatin 40 MG Oral Tablet
+  1999-02-02[CURRENT] : bisoprolol fumarate 10 MG Oral Tablet
+  1999-02-02[CURRENT] : aspirin 81 MG Oral Tablet
+  1992-02-13[STOPPED] : Simvastatin 10 MG Oral Tablet for Hyperlipidemia (disorder)
+  1987-01-01[CURRENT] : Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray
+  1987-01-01[CURRENT] : 24 HR metoprolol succinate 100 MG Extended Release Oral Tablet
+--------------------------------------------------------------------------------
+CONDITIONS:
+  2024-09-26 - 2024-10-24 : Social isolation (finding)
+  2024-09-26 - 2024-10-24 : Medication review due (situation)
+  2024-08-22 - 2024-08-22 : Gingival disease (disorder)
+  2024-08-08 - 2024-09-26 : Victim of intimate partner abuse (finding)
+  2024-08-08 -            : Stress (finding)
+  2024-03-21 - 2024-08-15 : Osteoporotic fracture of bone (disorder)
+  2024-03-21 - 2024-08-15 : Closed fracture of hip (disorder)
+  2024-03-21 - 2024-08-15 : Fracture of bone (disorder)
+  2024-03-14 - 2024-03-14 : Primary dental caries (disorder)
+  2024-02-29 - 2024-03-14 : Gingivitis (disorder)
+  2024-02-29 -            : Full-time employment (finding)
+  2023-11-30 - 2024-02-29 : Part-time employment (finding)
+  2023-09-28 - 2023-10-12 : Gingivitis (disorder)
+  2023-08-17 - 2023-08-17 : Gingival disease (disorder)
+  2023-08-03 - 2023-08-17 : Gingivitis (disorder)
+  2023-08-03 - 2023-11-30 : Full-time employment (finding)
+  2023-08-03 - 2024-08-08 : Medication review due (situation)
+  2023-04-06 - 2023-08-03 : Not in labor force (finding)
+  2023-03-16 - 2023-03-16 : Primary dental caries (disorder)
+  2023-03-16 - 2023-03-16 : Gingival disease (disorder)
+  2023-03-02 - 2023-03-16 : Gingivitis (disorder)
+  2023-03-02 - 2023-04-06 : Limited social contact (finding)
+  2023-01-05 - 2023-06-01 : Medication review due (situation)
+  2022-09-08 - 2023-04-06 : Full-time employment (finding)
+  2022-07-28 - 2022-09-08 : Part-time employment (finding)
+  2022-07-28 - 2022-10-06 : Medication review due (situation)
+  2022-05-05 - 2022-05-19 : Gingivitis (disorder)
+  2022-05-05 - 2023-04-06 : Stress (finding)
+  2022-05-05 - 2022-05-05 : Medication review due (situation)
+  2022-02-10 - 2022-02-24 : Gingivitis (disorder)
+  2022-01-06 - 2022-02-10 : Stress (finding)
+  2022-01-06 - 2022-02-10 : Limited social contact (finding)
+  2021-12-23 - 2021-12-23 : Primary dental caries (disorder)
+  2021-12-23 - 2021-12-23 : Infection of tooth (disorder)
+  2021-12-09 - 2021-12-23 : Gingivitis (disorder)
+  2021-07-22 - 2023-06-01 : Victim of intimate partner abuse (finding)
+  2021-03-11 - 2021-12-09 : Stress (finding)
+  2021-01-14 - 2021-03-11 : Reports of violence in the environment (finding)
+  2021-01-14 - 2022-02-10 : Medication review due (situation)
+  2020-12-31 - 2020-12-31 : Leaking dental filling (finding)
+  2020-12-31 - 2020-12-31 : Gingival disease (disorder)
+  2020-12-17 - 2022-07-28 : Full-time employment (finding)
+  2020-12-17 - 2020-12-17 : Medication review due (situation)
+  2020-09-17 - 2020-12-17 : Part-time employment (finding)
+  2020-08-13 - 2020-09-17 : Severe anxiety (panic) (finding)
+  2020-08-13 - 2020-09-17 : Medication review due (situation)
+  2020-07-16 - 2020-09-17 : Stress (finding)
+  2020-07-16 - 2020-07-16 : Medication review due (situation)
+  2020-02-13 - 2020-02-13 : Primary dental caries (disorder)
+  2020-01-23 - 2020-02-13 : Gingivitis (disorder)
+  2020-01-23 - 2020-02-06 : Stress (finding)
+  2020-01-23 - 2020-02-06 : Social isolation (finding)
+  2020-01-23 - 2020-02-06 : Medication review due (situation)
+  2020-01-16 - 2020-02-01 : Viral sinusitis (disorder)
+  2020-01-02 - 2020-01-02 : Medication review due (situation)
+  2019-12-12 - 2019-12-26 : Medication review due (situation)
+  2019-12-05 - 2020-01-02 : Stress (finding)
+  2019-12-05 - 2020-09-17 : Full-time employment (finding)
+  2019-11-21 - 2019-12-05 : Part-time employment (finding)
+  2019-11-21 - 2019-12-05 : Medication review due (situation)
+  2019-10-17 - 2020-02-27 : Osteoporotic fracture of bone (disorder)
+  2019-10-17 - 2020-02-27 : Fracture of forearm (disorder)
+  2019-10-17 - 2020-02-27 : Fracture of bone (disorder)
+  2019-07-25 - 2019-07-25 : Primary dental caries (disorder)
+  2019-07-25 - 2019-07-25 : Gingival disease (disorder)
+  2019-07-11 - 2019-07-25 : Gingivitis (disorder)
+  2019-07-11 - 2019-11-21 : Full-time employment (finding)
+  2019-07-11 - 2019-07-11 : Medication review due (situation)
+  2019-05-09 - 2019-05-09 : Gingival disease (disorder)
+  2019-04-25 - 2019-05-09 : Gingivitis (disorder)
+  2019-04-25 - 2019-07-11 : Part-time employment (finding)
+  2018-11-22 - 2018-12-06 : Gingivitis (disorder)
+  2018-11-08 - 2018-11-08 : Primary dental caries (disorder)
+  2018-10-25 - 2019-11-21 : Stress (finding)
+  2018-10-25 - 2019-04-25 : Full-time employment (finding)
+  2018-10-25 - 2019-04-25 : Medication review due (situation)
+  2018-07-05 - 2018-10-25 : Not in labor force (finding)
+  2018-06-14 - 2018-06-14 : Gingival disease (disorder)
+  2018-03-15 - 2018-03-15 : Gingival disease (disorder)
+  2018-03-01 - 2018-03-15 : Gingivitis (disorder)
+  2018-03-01 - 2018-07-05 : Full-time employment (finding)
+  2018-03-01 - 2018-07-05 : Medication review due (situation)
+  2018-02-01 - 2018-03-01 : Not in labor force (finding)
+  2017-11-30 - 2018-02-01 : Medication review due (situation)
+  2017-09-14 - 2017-09-14 : Gingival disease (disorder)
+  2017-08-31 - 2017-09-14 : Gingivitis (disorder)
+  2017-08-31 - 2018-02-01 : Full-time employment (finding)
+  2017-06-29 - 2018-07-05 : Stress (finding)
+  2017-06-29 - 2017-08-31 : Part-time employment (finding)
+  2016-07-07 - 2016-07-07 : Gingival disease (disorder)
+  2016-06-23 - 2016-07-07 : Gingivitis (disorder)
+  2016-01-07 - 2017-03-02 : Stress (finding)
+  2016-01-07 - 2017-06-29 : Full-time employment (finding)
+  2015-10-15 - 2016-01-07 : Part-time employment (finding)
+  2015-08-27 - 2015-08-27 : Loose dental filling (finding)
+  2015-08-13 - 2017-08-31 : Medication review due (situation)
+  2015-07-16 - 2015-07-16 : Medication review due (situation)
+  2015-06-18 - 2015-08-13 : Reports of violence in the environment (finding)
+  2015-06-18 - 2015-07-16 : Stress (finding)
+  2014-05-22 - 2015-06-18 : Medication review due (situation)
+  2014-02-27 - 2015-10-15 : Full-time employment (finding)
+  2014-02-20 -            : Chronic low back pain (finding)
+  2014-02-20 -            : Chronic pain (finding)
+  2011-11-26 -            : Osteoporosis (disorder)
+  1999-02-02 -            : History of myocardial infarction (situation)
+  1999-02-02 -            : Acute ST segment elevation myocardial infarction (disorder)
+  1998-03-12 -            : Proteinuria due to type 2 diabetes mellitus (disorder)
+  1998-03-12 -            : Chronic kidney disease stage 3 (disorder)
+  1994-11-03 -            : Loss of teeth (disorder)
+  1992-01-23 -            : Hyperlipidemia (disorder)
+  1990-11-08 -            : Has a criminal record (finding)
+  1987-01-02 -            : Abnormal findings diagnostic imaging heart+coronary circulat (finding)
+  1986-12-25 -            : Ischemic heart disease (disorder)
+  1986-12-25 -            : Microalbuminuria due to type 2 diabetes mellitus (disorder)
+  1986-12-25 -            : Disorder of kidney due to diabetes mellitus (disorder)
+  1986-12-25 -            : Chronic kidney disease stage 2 (disorder)
+  1981-11-26 -            : Essential hypertension (disorder)
+  1977-12-15 -            : Body mass index 30+ - obesity (finding)
+  1964-07-15 -            : Past pregnancy history of miscarriage (situation)
+  1962-04-22 -            : Chronic sinusitis (disorder)
+  1950-01-19 -            : Received higher education (finding)
