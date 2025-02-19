@@ -66,11 +66,11 @@ class ServerlessSNOMEDTOCDSi(Stack):
             description="Layer containing boto3 for AWS API calls"
         )
 
-        # Lambda Function
-        lambda_function = _lambda.Function(
-            self, "SNOMEDTOCDSiLambda",
+        # Lambda Function: HL7 to SNOMED to CDSi
+        hl7_lambda_function = _lambda.Function(
+            self, "HL7SNOMEDTOCDSiLambda",
             runtime=_lambda.Runtime.PYTHON_3_13,
-            handler="lambda_function.lambda_handler",
+            handler="hl7_lambda_function.lambda_handler",  # Different handler
             code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
             role=lambda_role,
             timeout=Duration.seconds(30),
@@ -82,16 +82,63 @@ class ServerlessSNOMEDTOCDSi(Stack):
             }
         )
 
+        # Lambda Function: SNOMED to CDSi
+        snomed_to_cdsi_lambda = _lambda.Function(
+            self, "SNOMEDToCDSiLambda",
+            runtime=_lambda.Runtime.PYTHON_3_13,
+            handler="snomed_to_cdsi_lambda.lambda_handler",  # Different handler
+            code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
+            role=lambda_role,
+            timeout=Duration.seconds(30),
+            memory_size=256,
+            layers=[dependencies_layer],
+            environment={
+                "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
+                "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
+            }
+        )
+
+        # # Lambda Function
+        # lambda_function = _lambda.Function(
+        #     self, "SNOMEDTOCDSiLambda",
+        #     runtime=_lambda.Runtime.PYTHON_3_13,
+        #     handler="lambda_function.lambda_handler",
+        #     code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
+        #     role=lambda_role,
+        #     timeout=Duration.seconds(30),
+        #     memory_size=256,
+        #     layers=[dependencies_layer],
+        #     environment={
+        #         "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
+        #         "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
+        #     }
+        # )
+
+        # # ✅ API Gateway to Trigger Lambda
+        # api = apigw.LambdaRestApi(
+        #     self, "HL7SNOMEDToCDSiAPI",
+        #     handler=lambda_function,
+        #     proxy=False
+        # )
+
         # ✅ API Gateway to Trigger Lambda
         api = apigw.LambdaRestApi(
             self, "HL7SNOMEDToCDSiAPI",
-            handler=lambda_function,
+            handler=hl7_lambda_function,
             proxy=False
         )
 
         # ✅ Define API Route: /process-file
-        process_file = api.root.add_resource("snomed-to-cdsi")
+        process_file = api.root.add_resource("hl7-to-snomed-to-cdsi")
         process_file.add_method("POST")  # Supports POST requests
+
+        # # ✅ Define API Route: /process-file
+        # process_file = api.root.add_resource("snomed-to-cdsi")
+        # process_file.add_method("POST")  # Supports POST requests
+        
+        # Create a new endpoint to accept the SNOMED codes
+        snomed_codes_resource = api.root.add_resource("snomed-to-cdsi")
+        snomed_codes_resource.add_method("POST", integration=apigw.LambdaIntegration(snomed_to_cdsi_lambda))
 
         # ✅ Output API Gateway URL
         CfnOutput(self, "APIGatewayURL", value=api.url)

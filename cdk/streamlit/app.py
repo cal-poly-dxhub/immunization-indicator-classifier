@@ -18,7 +18,7 @@ def call_condition_api(file_key):
         return "Error: Failed to get response from API"
     
 def call_snomed_to_cdsi_api(file_key):
-    url = "https://jlnk2zoyf1.execute-api.us-west-2.amazonaws.com/prod/snomed-to-cdsi"
+    url = "https://jlnk2zoyf1.execute-api.us-west-2.amazonaws.com/prod/hl7-to-snomed-to-cdsi"
     headers = {"Content-Type": "application/json"}
     data = {"s3_key": file_key}
     
