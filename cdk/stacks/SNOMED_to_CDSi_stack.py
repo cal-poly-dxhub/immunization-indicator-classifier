@@ -38,7 +38,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
                 name="snomed_code",
                 type=dynamodb.AttributeType.NUMBER
             ),
-            sort_key=dynamodb.Attribute(  # ✅ Add sort key (cdsi_code)
+            sort_key=dynamodb.Attribute(  
             name="cdsi_code",
             type=dynamodb.AttributeType.NUMBER
             ),
