@@ -1,0 +1,3 @@
+{
+  "python.analysis.extraPaths": ["./cdk/lambda/SNOMED_to_CDSi/src"]
+}
