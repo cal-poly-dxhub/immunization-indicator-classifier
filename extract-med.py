@@ -2,6 +2,10 @@ from bs4 import BeautifulSoup
 import json
 import re
 
+import boto3
+from typing import List
+
+
 def get_direct_text(element):
   return ''.join([t for t in element.contents if isinstance(t, str)]).strip()
 
@@ -76,7 +80,8 @@ def get_patient_meds(filename: str):
   
   components = data.get("component",{}).get("structuredBody", {}).get("component", [])
   med_info = {"medications" : [],
-              "problems" : [] }
+              "problems" : [],
+              "conditions" : []}
   if len(components) == 0:
     return med_info
   
@@ -91,4 +96,31 @@ def get_patient_meds(filename: str):
     
   med_info['medications'] = meds
   med_info['problems'] = problems
-  return med_info
+  return med_info['problems'] #getting the list of conditions
+
+
+
+#---- code for extracting SNOMED Code and Probability 
+
+# Initialize ComprehendMedical client
+client = boto3.client('comprehendmedical')
+
+def infer_snomedct(conditions: List[str]):
+    # Iterate through the list of conditions
+    for condition in conditions:
+        print(f"Processing condition: {condition}")
+        response = client.infer_snomedct(Text=condition)
+        
+        # Iterate through the results and print the detected entities and their SNOMED-CT codes
+        for entity in response['Entities']:
+            print(f"Entity Text: {entity['Text']}")
+            print(f"Category: {entity['Category']}")
+            print(f"Type: {entity['Type']}")
+            print(f"SNOMEDCT Concepts:")
+            for concept in entity.get('SNOMEDCTConcepts', []):
+                print(f"  Description: {concept['Description']}")
+                print(f"  Code: {concept['Code']}")
+                print(f"  Confidence: {concept['Score']}")
+            print("="*50)
+
+infer_snomedct(get_patient_meds("patient.xml"))
