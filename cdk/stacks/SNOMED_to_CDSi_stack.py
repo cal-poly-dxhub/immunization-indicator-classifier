@@ -4,12 +4,11 @@ from aws_cdk import (
     Duration,
     CfnOutput,
     aws_apigateway as apigw, 
-    aws_dynamodb as dynamodb
+    aws_dynamodb as dynamodb,
+    aws_ssm as ssm,
+    aws_iam as iam,
+    aws_lambda as _lambda
 )
-# from aws_cdk import aws_s3 as s3
-from aws_cdk import aws_lambda as _lambda
-from aws_cdk import aws_iam as iam
-from aws_cdk import aws_ssm as ssm 
 from constructs import Construct
 
 BUCKET_NAME = "hl7-xml-to-snomed-code"
@@ -31,6 +30,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             parameter_name="/config/DynamoSNOMEDToCDSiTableName",
             string_value=TABLE_NAME
         )
+
         dynamodb.Table(
             self, "SNOMEDToCDSiTable",
             table_name=TABLE_NAME,
@@ -54,7 +54,8 @@ class ServerlessSNOMEDTOCDSi(Stack):
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonBedrockFullAccess")
+                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonBedrockFullAccess"),
+                iam.ManagedPolicy.from_aws_managed_policy_name("ComprehendMedicalFullAccess")
             ]
         )
 
@@ -63,7 +64,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             self, "DependenciesLayerSNOMEDTOCDSi",
             code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/dependencies/package.zip"),
             compatible_runtimes=[_lambda.Runtime.PYTHON_3_13],
-            description="Layer containing boto3 for AWS API calls"
+            description="Layer containing all lambda dependencies for HLN immunization classification"
         )
 
         # Lambda Function: HL7 to SNOMED to CDSi
@@ -86,12 +87,27 @@ class ServerlessSNOMEDTOCDSi(Stack):
         snomed_to_cdsi_lambda = _lambda.Function(
             self, "SNOMEDToCDSiLambda",
             runtime=_lambda.Runtime.PYTHON_3_13,
-            handler="snomed_to_cdsi_lambda.lambda_handler",  # Different handler
+            handler="snomed_to_cdsi_lambda.lambda_handler",  
             code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
             role=lambda_role,
             timeout=Duration.seconds(30),
             memory_size=1024,
             layers=[dependencies_layer],
+            environment={
+                "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
+                "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
+            }
+        )
+
+        # Lambda Function: Condition to SNOMED to CDSi
+        condition_to_snomed_to_cdsi_lambda = _lambda.Function(
+            self, "ConditionSNOMEDToCDSiLambda",
+            runtime=_lambda.Runtime.PYTHON_3_13,
+            handler="condition_comprehend_lambda.lambda_handler",  
+            code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
+            role=lambda_role,
+            timeout=Duration.seconds(30),
+            memory_size=256,
             environment={
                 "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
                 "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
@@ -112,6 +128,9 @@ class ServerlessSNOMEDTOCDSi(Stack):
         # Create a new endpoint to accept the SNOMED codes
         snomed_codes_resource = api.root.add_resource("snomed-to-cdsi")
         snomed_codes_resource.add_method("POST", integration=apigw.LambdaIntegration(snomed_to_cdsi_lambda))
+
+        condition_snomed_codes_resource = api.root.add_resource("condition-snomed-to-cdsi")
+        condition_snomed_codes_resource.add_method("POST", integration=apigw.LambdaIntegration(condition_to_snomed_to_cdsi_lambda))
 
         # ✅ Output API Gateway URL
         CfnOutput(self, "APIGatewayURL", value=api.url)
