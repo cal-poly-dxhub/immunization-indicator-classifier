@@ -34,7 +34,7 @@ for i, obs in enumerate(df.rows(named=True)):
                 TableName=TABLE_NAME,
                 Item={
                     "snomed_code": serializer.serialize(int(snomed_code)),
-                    "cdsi_code": serializer.serialize(int(obs["Observation Code"] + 2)),
+                    "cdsi_code": serializer.serialize(int(obs["Observation Code"])),
                     "snomed_description": serializer.serialize(description),
                     "observation_title": serializer.serialize(obs["Observation Title"])
                 }
