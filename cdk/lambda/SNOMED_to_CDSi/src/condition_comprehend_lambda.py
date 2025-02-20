@@ -1,5 +1,12 @@
+import json
+
 def lambda_handler(event, context):
     return {
         'statusCode': 200,
-        'body': 'This is a placeholder'
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        'body': json.dumps({
+            'message': 'This is a placeholder'
+        })
     }
