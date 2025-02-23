@@ -2,10 +2,6 @@ from bs4 import BeautifulSoup
 import json
 import re
 
-import boto3
-from typing import List
-from cdk.lambda_folder.SNOMED_to_CDSi.src.snomed_to_cdsi_logic import snomed_set_with_cdsi_codes
-
 
 def get_direct_text(element):
   return ''.join([t for t in element.contents if isinstance(t, str)]).strip()
@@ -97,43 +93,4 @@ def get_patient_meds(filename: str):
     
   med_info['medications'] = meds
   med_info['problems'] = problems
-  return med_info['problems'] #getting the list of conditions
-
-
-
-#---- code for extracting SNOMED Code and Probability along with CDSi
-
-# Initialize ComprehendMedical client
-client = boto3.client('comprehendmedical')
-
-def infer_snomedct(conditions: List[str]):
-    snomed_set = set()
-    # Iterate through the list of conditions
-    for condition in conditions:
-        response = client.infer_snomedct(Text=condition)
-        
-        # Iterate through the results and print the detected entities and their SNOMED-CT codes
-        for entity in response['Entities']:
-            print(f"Entity Text: {entity['Text']}")
-            print(f"Category: {entity['Category']}")
-            print(f"Type: {entity['Type']}")
-            print(f"SNOMEDCT Concepts:")
-            for concept in entity.get('SNOMEDCTConcepts', []):
-                snomed_code = int(concept['Code'])
-                print(f"  Description: {concept['Description']}")
-                print(f"  Code: {concept['Code']}")
-                print(f"  Confidence: {concept['Score']}")
-                snomed_set.add(snomed_code)
-            print("="*50)
-    cdsi_dict = snomed_set_with_cdsi_codes(snomed_set)
-
-    # Print the CDSI codes and related information
-    for cdsi_code, data in cdsi_dict.items():
-        print(f"CDSI Code: {cdsi_code}")
-        print(f"Observation Title: {data['observation_title']}")
-        for snomed_ref in data['snomed_references']:
-            print(f"  SNOMED Code: {snomed_ref['snomed_code']}")
-            print(f"  SNOMED Description: {snomed_ref['snomed_description']}")
-        print("="*50)
-
-infer_snomedct(get_patient_meds("patient.xml"))
+  return med_info
