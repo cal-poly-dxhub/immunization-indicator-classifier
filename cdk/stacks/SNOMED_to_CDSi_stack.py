@@ -108,6 +108,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             role=lambda_role,
             timeout=Duration.seconds(30),
             memory_size=256,
+            layers=[dependencies_layer],
             environment={
                 "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
                 "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name

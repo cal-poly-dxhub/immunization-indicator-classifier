@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-import json
 import re
 
 
@@ -70,27 +69,69 @@ def extract_problems(data: dict) -> list:
         
   return problems
 
-def get_patient_meds(filename: str):
-  with open(filename, 'r') as f:
-    soup = BeautifulSoup(f.read(), 'xml')
+def get_patient_meds(xml_content: str):
+    # try:
+    #     import lxml.etree
+    #     print("lxml is installed")
+    # except ImportError:
+    #     raise ImportError("The lxml library is required to parse XML content. Please install it using 'pip install lxml'")
+    
+    # import lxml
+    import sys
+    import subprocess
+    # print(f"LXML is installed at: {lxml.__file__}")
+    # print("Python Path:", sys.path)
+    # subprocess.check_call([sys.executable, "-m", "pip", "install", "lxml"])
+    import lxml
+    print("Available Parsers:", BeautifulSoup("").builder_registry.builders)
+    soup = BeautifulSoup(xml_content, 'lxml-xml')
     data = xml_to_dict(soup.ClinicalDocument)
   
-  components = data.get("component",{}).get("structuredBody", {}).get("component", [])
-  med_info = {"medications" : [],
-              "problems" : [],
-              "conditions" : []}
-  if len(components) == 0:
+    components = data.get("component", {}).get("structuredBody", {}).get("component", [])
+    med_info = {
+        "medications": [],
+        "problems": [],
+        "conditions": []
+    }
+
+    if not components:
+        return med_info
+
+    meds = []
+    problems = []
+
+    for component in components:
+        if isinstance(component, dict) and component.get("content", "") and 'medications' in component['content'].lower():
+            meds = extract_meds(component.get("section", {}))
+        
+        if isinstance(component, dict) and component.get("content", "") and 'problems' in component['content'].lower():
+            problems = extract_problems(component.get("section", {}))
+
+    med_info['medications'] = meds
+    med_info['problems'] = problems
     return med_info
+
+# def get_patient_meds(filename: str):
+#   with open(filename, 'r') as f:
+#     soup = BeautifulSoup(f.read(), 'xml')
+#     data = xml_to_dict(soup.ClinicalDocument)
   
-  meds = []
-  problems = []
-  for component in components:
-    if isinstance(component, dict) and (component.get("content", "") != "") and 'medications' in component['content'].lower():
-      meds = extract_meds(component.get("section", {}))
+#   components = data.get("component",{}).get("structuredBody", {}).get("component", [])
+#   med_info = {"medications" : [],
+#               "problems" : [],
+#               "conditions" : []}
+#   if len(components) == 0:
+#     return med_info
+  
+#   meds = []
+#   problems = []
+#   for component in components:
+#     if isinstance(component, dict) and (component.get("content", "") != "") and 'medications' in component['content'].lower():
+#       meds = extract_meds(component.get("section", {}))
     
-    if isinstance(component, dict) and (component.get("content", "") != "") and 'problems' in component['content'].lower():
-      problems = extract_problems(component.get("section", {}))
+#     if isinstance(component, dict) and (component.get("content", "") != "") and 'problems' in component['content'].lower():
+#       problems = extract_problems(component.get("section", {}))
     
-  med_info['medications'] = meds
-  med_info['problems'] = problems
-  return med_info
+#   med_info['medications'] = meds
+#   med_info['problems'] = problems
+#   return med_info
