@@ -1,37 +1,56 @@
-from typing import Set, Dict, List
-from bs4 import BeautifulSoup
+from typing import Set
 from datetime import datetime
 import urllib.parse
 import re
 import boto3
 import json
-from snomed_to_cdsi_logic import snomed_set_with_cdsi_codes, get_s3_bucket_name, get_mapping_table
+from snomed_to_cdsi_logic import snomed_set_with_cdsi_codes, get_s3_bucket_name
+import xml.etree.ElementTree as ET
 
 s3 = boto3.client('s3')
 
+def strip_namespaces(element):
+    """Recursively remove namespace prefixes from tags."""
+    for elem in element.iter():
+        if '}' in elem.tag:
+            elem.tag = elem.tag.split('}', 1)[1]
+
 def xml_to_snomed_set(xml_doc: str) -> Set[str]:
-    soup = BeautifulSoup(xml_doc, features="html.parser")
-    valid_snomed_codes = set()     
-    
+    root = ET.fromstring(xml_doc)
+    strip_namespaces(root) 
+
+    valid_snomed_codes = set()
     date_pattern = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
-    td_list = [tr.get_text(strip=True) for tr in list(soup.find_all("tr"))]
-    for i, td in enumerate(td_list):
-        dates = date_pattern.findall(td)
+
+    # Handle <tr> text extraction (like your original code)
+    for tr in root.findall(".//tr"):
+        td_text = "".join(tr.itertext()).strip()
+        dates = date_pattern.findall(td_text)
         if len(dates) <= 1 or datetime.strptime(dates[1], "%Y-%m-%dT%H:%M:%SZ") > datetime.now():
-            if re.search(r"snomed", td):
-                valid_snomed_codes.add(re.search(r"\d+$", td).group(0))
-    
-    entries = soup.find_all("entry")
-    for entry in entries:
-        high = entry.find("high")
-        code = entry.find("code", codeSystemName="SNOMED-CT")
-        value = entry.find("value")
-        if high and (not high.get("value") or not re.search(r'\d', high.get("value")) or datetime.strptime(high.get("value"), "%Y%m%d%H%M%S") > datetime.now()):
-            high = None
-        if code and value and not high:
-            valid_snomed_codes.add(value.get("code"))
+            if "snomed" in td_text.lower():
+                match = re.search(r"\d+$", td_text)
+                if match:
+                    valid_snomed_codes.add(match.group(0))
+
+    # Handle <entry> extraction with optional <high>, <code>, <value>
+    for entry in root.findall(".//entry"):
+        high = entry.find(".//high")
+        code = entry.find(".//code[@codeSystemName='SNOMED-CT']")
+        value = entry.find(".//value")
+
+        high_valid = True
+        if high is not None:
+            high_value = high.attrib.get("value")
+            if not high_value or not re.search(r'\d', high_value) or datetime.strptime(high_value, "%Y%m%d%H%M%S") > datetime.now():
+                high_valid = False
+
+        if code is not None and value is not None and not high_valid:
+            snomed_code = value.attrib.get("code")
+            if snomed_code:
+                valid_snomed_codes.add(snomed_code)
 
     return valid_snomed_codes
+
 
 
 def lambda_handler(event, context):
