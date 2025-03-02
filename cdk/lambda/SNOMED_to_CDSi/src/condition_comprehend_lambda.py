@@ -1,9 +1,7 @@
 import boto3
-import bs4
 import json
 from extract_med import get_patient_meds
-from extract_code import extract_snomedct 
-from snomed_to_cdsi_logic import get_mapping_table, get_s3_bucket_name  # Assuming this is where your CDSI mapping functions are
+from snomed_to_cdsi_logic import get_s3_bucket_name, snomed_to_cdsi_mapping_with_confidence
 import urllib.parse
 
 
@@ -55,8 +53,6 @@ def lambda_handler(event, context):
     bucket_name = get_s3_bucket_name()
     s3_key = body['s3_key'] 
 
-    print(f"Bucket name: {bucket_name}")
-
     xml_content = get_file_from_s3(bucket_name, s3_key)
 
     if not xml_content:
@@ -67,9 +63,9 @@ def lambda_handler(event, context):
     
     patient_records = get_patient_meds(xml_content)  
     patient_problems = patient_records['problems']
-    print(f"Patient problems: {patient_problems}")
-    # response = client.infer_snomedct(Text=patient_problems)
-    # snomed_output = extract_snomedct(patient_problems)  
+    patient_problems = "\n".join(patient_problems)
+    comprehend = client.infer_snomedct(Text=patient_problems)
+    cdsi = snomed_to_cdsi_mapping_with_confidence(comprehend["Entities"], threshold=0.3, medical_condition_only=True)
 
     return {
         'statusCode': 200,
@@ -77,6 +73,7 @@ def lambda_handler(event, context):
             'Content-Type': 'application/json'
         },
         'body': json.dumps({
-            'snomed_results': patient_problems
+            'snomed_results': comprehend["Entities"],
+            'cdsi_results': cdsi
         })
     }

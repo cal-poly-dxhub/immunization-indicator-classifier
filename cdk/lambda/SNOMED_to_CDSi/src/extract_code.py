@@ -5,91 +5,40 @@ import boto3
 from typing import List
 from extract_med import get_patient_meds
 from snomed_to_cdsi_logic import snomed_set_with_cdsi_codes
-import sys, os, io
+import sys, io
 
 # Initialize ComprehendMedical client
 client = boto3.client('comprehendmedical')
 
-def extract_snomedct(conditions: List[str]) -> str:
-    """
-    Extracts SNOMED-CT codes and prints the results, capturing the output as a string.
-
-    Args:
-        conditions (List[str]): A list of strings representing medical conditions.
-
-    Returns:
-        str: The captured output from the print statements.
-    """
+def extract_snomedct(conditions: List[str]):
     snomed_set = set()
-    # Capture the standard output
-    old_stdout = sys.stdout
-    sys.stdout = captured_output = io.StringIO()
-
     # Iterate through the list of conditions
-    try:
-        for condition in conditions:
-            response = client.infer_snomedct(Text=condition)
-
-            # Iterate through the results and print the detected entities and their SNOMED-CT codes
-            for entity in response['Entities']:
-                print(f"Entity Text: {entity['Text']}")
-                print(f"Category: {entity['Category']}")
-                print(f"Type: {entity['Type']}")
-                print(f"SNOMEDCT Concepts:")
-                for concept in entity.get('SNOMEDCTConcepts', []):
-                    snomed_code = int(concept['Code'])
-                    print(f"  Description: {concept['Description']}")
-                    print(f"  Code: {concept['Code']}")
-                    print(f"  Confidence: {concept['Score']}")
-                    snomed_set.add(snomed_code)
-                print("=" * 50)
-
-        cdsi_dict = snomed_set_with_cdsi_codes(snomed_set)
-
-        # Print the CDSI codes and related information
-        for cdsi_code, data in cdsi_dict.items():
-            print(f"CDSI Code: {cdsi_code}")
-            print(f"Observation Title: {data['observation_title']}")
-            for snomed_ref in data['snomed_references']:
-                print(f"  SNOMED Code: {snomed_ref['snomed_code']}")
-                print(f"  SNOMED Description: {snomed_ref['snomed_description']}")
-            print("=" * 50)
-    finally:
-        # Restore the standard output
-        sys.stdout = old_stdout
-        output = captured_output.getvalue()
-
-    return output
-
-# def extract_snomedct(conditions: List[str]):
-#     snomed_set = set()
-#     # Iterate through the list of conditions
-#     for condition in conditions:
-#         response = client.infer_snomedct(Text=condition)
+    for condition in conditions:
+        response = client.infer_snomedct(Text=condition)
         
-#         # Iterate through the results and print the detected entities and their SNOMED-CT codes
-#         for entity in response['Entities']:
-#             print(f"Entity Text: {entity['Text']}")
-#             print(f"Category: {entity['Category']}")
-#             print(f"Type: {entity['Type']}")
-#             print(f"SNOMEDCT Concepts:")
-#             for concept in entity.get('SNOMEDCTConcepts', []):
-#                 snomed_code = int(concept['Code'])
-#                 print(f"  Description: {concept['Description']}")
-#                 print(f"  Code: {concept['Code']}")
-#                 print(f"  Confidence: {concept['Score']}")
-#                 snomed_set.add(snomed_code)
-#             print("="*50)
-#     cdsi_dict = snomed_set_with_cdsi_codes(snomed_set)
+        # Iterate through the results and print the detected entities and their SNOMED-CT codes
+        for entity in response['Entities']:
+            print(f"Entity Text: {entity['Text']}")
+            print(f"Category: {entity['Category']}")
+            print(f"Type: {entity['Type']}")
+            print(f"SNOMEDCT Concepts:")
+            for concept in entity.get('SNOMEDCTConcepts', []):
+                snomed_code = int(concept['Code'])
+                print(f"  Description: {concept['Description']}")
+                print(f"  Code: {concept['Code']}")
+                print(f"  Confidence: {concept['Score']}")
+                snomed_set.add(snomed_code)
+            print("="*50)
+    cdsi_dict = snomed_set_with_cdsi_codes(snomed_set)
 
-#     # Print the CDSI codes and related information
-#     for cdsi_code, data in cdsi_dict.items():
-#         print(f"CDSI Code: {cdsi_code}")
-#         print(f"Observation Title: {data['observation_title']}")
-#         for snomed_ref in data['snomed_references']:
-#             print(f"  SNOMED Code: {snomed_ref['snomed_code']}")
-#             print(f"  SNOMED Description: {snomed_ref['snomed_description']}")
-#         print("="*50)
+    # Print the CDSI codes and related information
+    for cdsi_code, data in cdsi_dict.items():
+        print(f"CDSI Code: {cdsi_code}")
+        print(f"Observation Title: {data['observation_title']}")
+        for snomed_ref in data['snomed_references']:
+            print(f"  SNOMED Code: {snomed_ref['snomed_code']}")
+            print(f"  SNOMED Description: {snomed_ref['snomed_description']}")
+        print("="*50)
 
 def extract_rxnorm(medications: List[str]):
     # Iterate through the list of medications
