@@ -71,7 +71,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
         hl7_lambda_function = _lambda.Function(
             self, "HL7SNOMEDTOCDSiLambda",
             runtime=_lambda.Runtime.PYTHON_3_13,
-            handler="hl7_lambda_function.lambda_handler",  # Different handler
+            handler="hl7_lambda_function.lambda_handler", 
             code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
             role=lambda_role,
             timeout=Duration.seconds(30),
@@ -104,7 +104,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             self, "ConditionSNOMEDToCDSiLambda",
             runtime=_lambda.Runtime.PYTHON_3_13,
             handler="condition_comprehend_lambda.lambda_handler",  
-            code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
+            code=_lambda.Code.from_asset("lambda/comprehend_code_inference/src"),
             role=lambda_role,
             timeout=Duration.seconds(30),
             memory_size=256,

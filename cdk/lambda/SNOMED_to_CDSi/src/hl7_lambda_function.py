@@ -51,8 +51,6 @@ def xml_to_snomed_set(xml_doc: str) -> Set[str]:
 
     return valid_snomed_codes
 
-
-
 def lambda_handler(event, context):
     try:
         # Parse request body

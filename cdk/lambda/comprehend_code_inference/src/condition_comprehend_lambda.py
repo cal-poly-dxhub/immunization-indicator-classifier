@@ -1,16 +1,11 @@
 import boto3
 import json
+import urllib.parse
 from extract_med import get_patient_meds
 from snomed_to_cdsi_logic import get_s3_bucket_name, snomed_to_cdsi_mapping_with_confidence
-import urllib.parse
 
-
-# Initialize ComprehendMedical client
 client = boto3.client('comprehendmedical')
-
-# DynamoDB client
 dynamodb = boto3.client('dynamodb')
-
 
 def get_file_from_s3(bucket_name: str, file_key: str) -> str:
     """
