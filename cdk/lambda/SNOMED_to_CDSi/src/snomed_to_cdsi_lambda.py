@@ -1,6 +1,4 @@
-import boto3
 import json
-from typing import List
 from snomed_to_cdsi_logic import snomed_set_with_cdsi_codes
 
 def lambda_handler(event, context):
@@ -21,6 +19,6 @@ def lambda_handler(event, context):
     except Exception as e:
         print(f"Error processing request: {e}")
         return {
-            "statusCode": 400,  # Or 500 depending on error type
+            "statusCode": 400,
             "body": json.dumps({"error": str(e)})
         }

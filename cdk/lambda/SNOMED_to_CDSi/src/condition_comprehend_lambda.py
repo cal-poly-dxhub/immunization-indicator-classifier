@@ -4,6 +4,7 @@ import json
 from extract_med import get_patient_meds
 from extract_code import extract_snomedct 
 from snomed_to_cdsi_logic import get_mapping_table, get_s3_bucket_name  # Assuming this is where your CDSI mapping functions are
+import urllib.parse
 
 
 # Initialize ComprehendMedical client
@@ -26,7 +27,8 @@ def get_file_from_s3(bucket_name: str, file_key: str) -> str:
     """
     s3 = boto3.client('s3')
     try:
-        response = s3.get_object(Bucket=bucket_name, Key=file_key)
+        key = urllib.parse.unquote_plus(file_key, encoding='utf-8')
+        response = s3.get_object(Bucket=bucket_name, Key=key)
         file_content = response['Body'].read().decode('utf-8')
         return file_content
     except Exception as e:
@@ -45,17 +47,17 @@ def lambda_handler(event, context):
         dict: A dictionary containing the SNOMED and CDSI results as strings.
     """
     body = json.loads(event.get("body", "{}"))
-    if "file_key" not in body:
-        raise Exception("Missing 'file_key' in request body")
+    if "s3_key" not in body:
+        raise Exception("Missing 's3_key' in request body")
     
-    print(f"File key: {body['file_key']}")
+    print(f"s3 key: {body['s3_key']}")
 
     bucket_name = get_s3_bucket_name()
-    file_key = body['file_key'] 
+    s3_key = body['s3_key'] 
 
     print(f"Bucket name: {bucket_name}")
 
-    xml_content = get_file_from_s3(bucket_name, file_key)
+    xml_content = get_file_from_s3(bucket_name, s3_key)
 
     if not xml_content:
         return {
@@ -64,15 +66,17 @@ def lambda_handler(event, context):
         }
     
     patient_records = get_patient_meds(xml_content)  
-
-    print(f"Patient records: {patient_records}")
-
     patient_problems = patient_records['problems']
-    snomed_output = extract_snomedct(patient_problems)  
+    print(f"Patient problems: {patient_problems}")
+    # response = client.infer_snomedct(Text=patient_problems)
+    # snomed_output = extract_snomedct(patient_problems)  
 
     return {
         'statusCode': 200,
-        'body': {
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        'body': json.dumps({
             'snomed_results': patient_problems
-        }
+        })
     }
