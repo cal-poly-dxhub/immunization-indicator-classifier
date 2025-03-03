@@ -18,14 +18,13 @@ class ServerlessSNOMEDTOCDSi(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        # Store Configurations in AWS SSM Parameter Store
-        ssm_bucket_param = ssm.StringParameter(
+        ssm.StringParameter(
             self, "SSMSNOMEDToCDSiBucketName",
             parameter_name="/config/SSMSNOMEDToCDSiBucketName",
             string_value=BUCKET_NAME
         )
         
-        ssm_dynamo_table_param = ssm.StringParameter(
+        ssm.StringParameter(
             self, "DynamoSNOMEDToCDSiTableName",
             parameter_name="/config/DynamoSNOMEDToCDSiTableName",
             string_value=TABLE_NAME
@@ -45,7 +44,6 @@ class ServerlessSNOMEDTOCDSi(Stack):
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST
         )
 
-        #  IAM Role for Lambda with necessary permissions
         lambda_role = iam.Role(
             self, "LambdaExecutionRole",
             assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
@@ -54,7 +52,6 @@ class ServerlessSNOMEDTOCDSi(Stack):
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonBedrockFullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("ComprehendMedicalFullAccess")
             ]
         )
@@ -67,7 +64,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             description="Layer containing all lambda dependencies for HLN immunization classification"
         )
 
-        # Lambda Function: HL7 to SNOMED to CDSi
+        # Lambda Function: HL7 to SNOMED to CDSi Direct Mapping
         hl7_lambda_function = _lambda.Function(
             self, "HL7SNOMEDTOCDSiLambda",
             runtime=_lambda.Runtime.PYTHON_3_13,
@@ -76,14 +73,10 @@ class ServerlessSNOMEDTOCDSi(Stack):
             role=lambda_role,
             timeout=Duration.seconds(30),
             memory_size=256,
-            layers=[dependencies_layer],
-            environment={
-                "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
-                "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
-            }
+            layers=[dependencies_layer]
         )
 
-        # Lambda Function: SNOMED to CDSi
+        # Lambda Function: SNOMED to CDSi Direct Mapping
         snomed_to_cdsi_lambda = _lambda.Function(
             self, "SNOMEDToCDSiLambda",
             runtime=_lambda.Runtime.PYTHON_3_13,
@@ -91,12 +84,8 @@ class ServerlessSNOMEDTOCDSi(Stack):
             code=_lambda.Code.from_asset("lambda/SNOMED_to_CDSi/src"),
             role=lambda_role,
             timeout=Duration.seconds(30),
-            memory_size=1024,
-            layers=[dependencies_layer],
-            environment={
-                "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
-                "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
-            }
+            memory_size=256,
+            layers=[dependencies_layer]
         )
 
         # Lambda Function: Condition to SNOMED to CDSi
@@ -108,11 +97,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             role=lambda_role,
             timeout=Duration.seconds(30),
             memory_size=256,
-            layers=[dependencies_layer],
-            environment={
-                "SSMSNOMEDToCDSiBucketName": ssm_bucket_param.parameter_name,
-                "DynamoSNOMEDToCDSiTableName": ssm_dynamo_table_param.parameter_name
-            }
+            layers=[dependencies_layer]
         )
 
         # ✅ API Gateway to Trigger Lambda
@@ -122,7 +107,7 @@ class ServerlessSNOMEDTOCDSi(Stack):
             proxy=False
         )
 
-        # ✅ Define API Route: /process-file
+        # ✅ Define API Route: /hl7-to-snomed-to-cdsi
         process_file = api.root.add_resource("hl7-to-snomed-to-cdsi")
         process_file.add_method("POST")  # Supports POST requests
 
@@ -136,6 +121,12 @@ class ServerlessSNOMEDTOCDSi(Stack):
         # ✅ Output API Gateway URL
         CfnOutput(self, "APIGatewayURL", value=api.url)
         print(f"API Gateway URL: {api.url}")
+
+        ssm.StringParameter(
+            self, "SSMSNOMEDToCDSiAPIURL",
+            parameter_name="/config/SNOMEDToCDSiAPIURL",
+            string_value=api.url
+        )
 
 # Deploy the stack
 app = App()

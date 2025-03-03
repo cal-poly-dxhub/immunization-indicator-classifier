@@ -1,6 +1,5 @@
 import boto3
 from typing import Set, Dict, List
-import json
 
 dynamodb = boto3.client('dynamodb')
 ssm = boto3.client('ssm')

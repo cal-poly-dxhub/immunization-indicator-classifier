@@ -43,7 +43,6 @@ class ServerlessBedrockStack(Stack):
             managed_policies=[
                 iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AWSLambdaBasicExecutionRole"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonBedrockFullAccess")
             ]
@@ -97,6 +96,13 @@ class ServerlessBedrockStack(Stack):
         # ✅ Output API Gateway URL
         CfnOutput(self, "APIGatewayURL", value=api.url)
         print(f"API Gateway URL: {api.url}")
+
+        ssm.StringParameter(
+            self, "SSMLevel1IZClassificationEndpoint",
+            parameter_name="/config/Level1IZClassificationEndpoint",
+            string_value=f"{api.url}level-1-iz-classification"
+        )
+
 
 # Deploy the stack
 app = App()
