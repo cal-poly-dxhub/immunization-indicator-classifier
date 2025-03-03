@@ -1,0 +1,6 @@
+streamlit
+watchdog
+boto3
+awscli
+aws-cdk
+polars
