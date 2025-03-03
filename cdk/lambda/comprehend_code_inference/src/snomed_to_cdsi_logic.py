@@ -25,7 +25,8 @@ def extract_snomed_codes_with_confidence(snomed_results, threshold=0.5, medical_
                 snomed_with_confidence.append({
                     "code": concept["Code"],
                     "description": concept["Description"],
-                    "confidence": confidence
+                    "confidence": confidence,
+                    "text_reference": result["Text"]
                 })
                 
     return snomed_with_confidence
@@ -42,6 +43,7 @@ def snomed_to_cdsi_mapping_with_confidence(snomed_results, threshold=0.5, medica
         snomed_code = snomed_item["code"]
         snomed_description = snomed_item["description"]
         confidence = snomed_item["confidence"]
+        text_reference = snomed_item["text_reference"]
 
         # Query DynamoDB for CDSi codes linked to this SNOMED code
         query = dynamodb.query(
@@ -65,7 +67,8 @@ def snomed_to_cdsi_mapping_with_confidence(snomed_results, threshold=0.5, medica
             snomed_reference = {
                 "snomed_code": int(snomed_code),
                 "snomed_description": snomed_description,
-                "confidence": confidence
+                "confidence": confidence,
+                "text_reference": text_reference
             }
 
             if snomed_reference not in cdsi_dict[cdsi_code]["snomed_references"]:

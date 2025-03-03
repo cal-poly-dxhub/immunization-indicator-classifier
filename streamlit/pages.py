@@ -65,7 +65,7 @@ def snomed_to_cdsi_page():
             st.markdown("---")  # Separator for clarity
 
 def condition_snomed_to_cdsi_page():
-    st.title("Extract SNOMED from Condition and Match to CDSi (via API)")
+    st.title("Extract SNOMED from Condition and Match to CDSi via Medical Comprehend")
 
     if "file_key_condition_snomed" not in st.session_state:
         st.session_state.file_key_condition_snomed = ""
@@ -80,7 +80,7 @@ def condition_snomed_to_cdsi_page():
         st.session_state.submitted_condition_snomed = True
         st.write(f"Processing file: `{file_key}`")
 
-        with st.spinner("Contacting API for condition and SNOMED-CDSi mapping..."):
+        with st.spinner("Contacting Medical Comprehend for condition and SNOMED-CDSi mapping..."):
             result = call_condition_snomed_to_cdsi_api(file_key)
             if "error" in result:
                 st.error(result["error"])
@@ -102,5 +102,7 @@ def condition_snomed_to_cdsi_page():
                 st.markdown(f"**Observation Title:** {data['observation_title']}")
                 st.markdown("#### 🔗 Related SNOMED Codes:")
                 for snomed_ref in data["snomed_references"]:
-                    st.markdown(f"- **SNOMED Code:** `{snomed_ref['snomed_code']}` - {snomed_ref['snomed_description']} (Confidence: `{snomed_ref['confidence']:.4f}`)")
+                    st.markdown(f"**SNOMED Code:** `{snomed_ref['snomed_code']}` - {snomed_ref['snomed_description']}")
+                    st.markdown(f"- Confidence: `{snomed_ref['confidence']:.4f}`")
+                    st.markdown(f"- Text Reference: `{snomed_ref['text_reference']}`")
                 st.markdown("---")
