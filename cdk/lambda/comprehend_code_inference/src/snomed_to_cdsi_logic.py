@@ -33,9 +33,7 @@ def extract_snomed_codes_with_confidence(snomed_results, threshold=0.5, medical_
                         "text_reference": result["Text"]
                     }
                 
-    # Convert map back to list
     return list(snomed_map.values())
-
 
 def snomed_to_cdsi_mapping_with_confidence(snomed_results, threshold=0.5, medical_condition_only=True):
     """Maps SNOMED codes to CDSi codes, ensuring only the highest confidence match per SNOMED code."""

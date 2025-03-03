@@ -15,39 +15,41 @@ def strip_namespaces(element):
         if '}' in elem.tag:
             elem.tag = elem.tag.split('}', 1)[1]
 
+def find_section_by_template_id(root, target_template_id):
+    """Manually search for a section with a matching templateId@root."""
+    for section in root.findall(".//section"):
+        template_id = section.find("./templateId")
+        if template_id is not None and template_id.attrib.get("root") == target_template_id:
+            return section
+    return None
+
 def xml_to_snomed_set(xml_doc: str) -> Set[str]:
+    """Extract SNOMED codes from Problems (current only) and Surgeries (all) sections."""
     root = ET.fromstring(xml_doc)
-    strip_namespaces(root) 
-
+    strip_namespaces(root)
     valid_snomed_codes = set()
-    date_pattern = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
+    
+    def process_table_rows(section, check_end_date):
+        date_pattern = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
+        for tr in section.findall(".//tr"):
+            td_text = "".join(tr.itertext()).strip()
+            dates = date_pattern.findall(td_text)
+            
+            # Skip rows where the stop date is in the past (only for problem sections)
+            if check_end_date and len(dates) > 1 and datetime.strptime(dates[1], "%Y-%m-%dT%H:%M:%SZ") <= datetime.now():
+                continue
+            match = re.search(r"\d+$", td_text)
+            if match:
+                valid_snomed_codes.add(match.group(0))
 
-    # Handle <tr> text extraction (like your original code)
-    for tr in root.findall(".//tr"):
-        td_text = "".join(tr.itertext()).strip()
-        dates = date_pattern.findall(td_text)
-        if len(dates) <= 1 or datetime.strptime(dates[1], "%Y-%m-%dT%H:%M:%SZ") > datetime.now():
-            if "snomed" in td_text.lower():
-                match = re.search(r"\d+$", td_text)
-                if match:
-                    valid_snomed_codes.add(match.group(0))
+    # Find sections using manual search
+    problems_section = find_section_by_template_id(root, "2.16.840.1.113883.10.20.22.2.5.1")
+    if problems_section is not None:
+        process_table_rows(problems_section, check_end_date=True)
 
-    # Handle <entry> extraction with optional <high>, <code>, <value>
-    for entry in root.findall(".//entry"):
-        high = entry.find(".//high")
-        code = entry.find(".//code[@codeSystemName='SNOMED-CT']")
-        value = entry.find(".//value")
-
-        high_valid = True
-        if high is not None:
-            high_value = high.attrib.get("value")
-            if not high_value or not re.search(r'\d', high_value) or datetime.strptime(high_value, "%Y%m%d%H%M%S") > datetime.now():
-                high_valid = False
-
-        if code is not None and value is not None and not high_valid:
-            snomed_code = value.attrib.get("code")
-            if snomed_code:
-                valid_snomed_codes.add(snomed_code)
+    surgeries_section = find_section_by_template_id(root, "2.16.840.1.113883.10.20.22.2.7.1")
+    if surgeries_section is not None:
+        process_table_rows(surgeries_section, check_end_date=False)
 
     return valid_snomed_codes
 
