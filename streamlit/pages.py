@@ -1,5 +1,5 @@
 import streamlit as st
-from api_endpoints import call_condition_api, call_snomed_to_cdsi_api, call_condition_snomed_to_cdsi_api
+from api_endpoints import call_condition_api, call_snomed_to_cdsi_api, call_condition_snomed_to_cdsi_api, call_medication_rxnorm_api
 
 def condition_identifier_page():
     st.title("Medical Condition Identifier")
@@ -106,3 +106,53 @@ def condition_snomed_to_cdsi_page():
                     st.markdown(f"- Confidence: `{snomed_ref['confidence']:.4f}`")
                     st.markdown(f"- Text Reference: `{snomed_ref['text_reference']}`")
                 st.markdown("---")
+
+def medication_rxnorm_page():
+    
+    
+    st.title("Extract RXNORM from Medications via Medical Comprehend")
+
+    if "file_key_medication_rxnorm" not in st.session_state:
+        st.session_state.file_key_medication_rxnorm = ""
+    if "result_medication_rxnorm" not in st.session_state:
+        st.session_state.result_medication_rxnorm = None
+    if "submitted_medication_rxnorm" not in st.session_state:
+        st.session_state.submitted_medication_rxnorm = False
+
+    file_key = st.text_input("Enter the S3 file key:", key="file_key_medication_rxnorm")
+
+    if st.button("Submit", key="submit_medication_rxnorm"):
+        st.session_state.submitted_medication_rxnorm = True
+        st.write(f"Processing file: `{file_key}`")
+
+        with st.spinner("Contacting Medical Comprehend for medication and RXNORM..."):
+            result = call_medication_rxnorm_api(file_key)
+            if "error" in result:
+                st.error(result["error"])
+                st.session_state.result_medication_rxnorm = None
+            else:
+                st.session_state.result_medication_rxnorm = result
+        st.rerun()
+
+    if st.session_state.result_medication_rxnorm:
+        st.subheader("RxNorm Mappings from API")
+
+        rxnorm_results = st.session_state.result_medication_rxnorm.get("rxnorm_results", {})
+
+        #result_medication_rxnorm = json.loads(st.session_state.result_medication_rxnorm)
+        #print(result_medication_rxnorm)
+        #rxnorm_results = json.loads(result_medication_rxnorm['body']).get("rxnorm_results", {})
+        
+
+        if not st.session_state.result_medication_rxnorm:
+            st.warning("No RxNorm mappings found.")
+        else:
+            
+            for data in rxnorm_results:
+                # Display the entire rxnorm_ref to inspect its structure
+                st.markdown(f"### 🔹 RXNORM Code: `{data.get('code', 'N/A')}`")
+                st.markdown(f"- Description: `{data.get('description', 'N/A')}`")
+                st.markdown(f"- Confidence: `{data.get('confidence', 'N/A'):.4f}`")
+                st.markdown(f"- Text Reference: `{data.get('text_reference', 'N/A')}`")
+                st.markdown("---")
+            

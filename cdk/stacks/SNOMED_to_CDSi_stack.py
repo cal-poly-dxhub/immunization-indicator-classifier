@@ -100,6 +100,18 @@ class ServerlessSNOMEDTOCDSi(Stack):
             layers=[dependencies_layer]
         )
 
+        # Lambda Function: RXNORM
+        medication_rxnorm_lambda = _lambda.Function(
+            self, "MedicationRxnormLambda",
+            runtime=_lambda.Runtime.PYTHON_3_13,
+            handler="medication_comprehend_lambda.lambda_handler",  
+            code=_lambda.Code.from_asset("lambda/comprehend_rxnorm/src"),
+            role=lambda_role,
+            timeout=Duration.seconds(30),
+            memory_size=256,
+            layers=[dependencies_layer]
+        )
+
         # ✅ API Gateway to Trigger Lambda
         api = apigw.LambdaRestApi(
             self, "HL7SNOMEDToCDSiAPI",
@@ -118,6 +130,10 @@ class ServerlessSNOMEDTOCDSi(Stack):
         condition_snomed_codes_resource = api.root.add_resource("condition-snomed-to-cdsi")
         condition_snomed_codes_resource.add_method("POST", integration=apigw.LambdaIntegration(condition_to_snomed_to_cdsi_lambda))
 
+        # endpoint for RXNORM
+        medication_rxnorm_codes_resource = api.root.add_resource("medication-rxnorm")
+        medication_rxnorm_codes_resource.add_method("POST", integration=apigw.LambdaIntegration(medication_rxnorm_lambda))
+        
         # ✅ Output API Gateway URL
         CfnOutput(self, "APIGatewayURL", value=api.url)
         print(f"API Gateway URL: {api.url}")

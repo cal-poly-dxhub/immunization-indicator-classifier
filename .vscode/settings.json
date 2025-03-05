@@ -1,0 +1,6 @@
+{
+  "python.analysis.extraPaths": [
+    "./cdk/lambda/comprehend_rxnorm/src",
+    "./cdk/lambda/comprehend_code_inference/src"
+  ]
+}
