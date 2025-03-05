@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
   "python.analysis.extraPaths": [
     "./cdk/lambda/comprehend_rxnorm/src",
     "./cdk/lambda/comprehend_code_inference/src"
   ]
+=======
+  "python.analysis.extraPaths": ["./cdk/lambda/SNOMED_to_CDSi/src"]
+>>>>>>> a5acda4175c95d18b2cd0b8e0c712bc31291d211
 }
