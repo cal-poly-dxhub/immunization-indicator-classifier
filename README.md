@@ -41,5 +41,3 @@ Since **SNOMED codes** are more readily available than CDSi codes, we use a look
 This project provides two effective methods for mapping patient conditions to CDSi codes:
 - A **LLM-based approach** for direct classification.
 - A **SNOMED-to-CDSi mapping approach**, leveraging structured medical terminology.
-
-Both methods enable improved automation in clinical decision support systems by efficiently linking patient conditions to the appropriate immunization guidelines.
