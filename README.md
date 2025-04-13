@@ -18,6 +18,8 @@ We developed a prototype that processes an Electronic Health Record (EHR) text f
   2. **Observation titles** corresponding to each code
   3. **References** from patient conditions
 
+![image](https://github.com/user-attachments/assets/8933a7c0-c417-47b2-b9a7-859f94baf7ef)
+
 ## 2. SNOMED-to-CDSi Mapping
 
 Since **SNOMED codes** are more readily available than CDSi codes, we use a lookup table to map SNOMED codes to relevant CDSi codes. The solutions based on this method are:
@@ -29,12 +31,18 @@ Since **SNOMED codes** are more readily available than CDSi codes, we use a look
    - **Surgeries section**
 2. Query a **DynamoDB table** to find corresponding **CDSi codes** based on SNOMED codes.
 3. Return the mapped **CDSi codes**.
+   
+![image](https://github.com/user-attachments/assets/0e0158bb-6d8c-4f62-af4f-efecbbc48a3d)
+
 
 ### 2.2 Extracting SNOMED Codes from Unstructured Text
 
 1. Extract **current conditions** (conditions without an end date) from the patient CDA document.
 2. Use **AWS Medical Comprehend** to extract **SNOMED codes** from the unstructured text.
 3. Query the **DynamoDB table** to retrieve **CDSi codes** that correspond to the extracted SNOMED codes.
+
+![image](https://github.com/user-attachments/assets/df8f453b-b46a-40bb-ae6f-3df484a45417)
+
 
 ## Conclusion
 
