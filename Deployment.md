@@ -171,3 +171,4 @@ curl -X POST \
 ```
 
 ---
+> See the [Streamlit Demo Guide](./StreamlitDemo.md) for detailed steps for running frontend demo.
