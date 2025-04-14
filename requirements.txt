@@ -1,6 +1,8 @@
-streamlit
-watchdog
-boto3
-awscli
-aws-cdk
-polars
+aws-cdk-lib==2.189.0
+aws-cdk.asset-awscli-v1==2.2.231
+awscli==1.38.33
+boto3==1.37.33
+constructs==10.4.2
+polars==1.27.1
+streamlit==1.32.0
+watchdog==4.0.1
