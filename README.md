@@ -37,6 +37,7 @@ Thanks for your interest in our solution.  Having specific examples of replicati
 - [Project Overview](#project-overview)
 - [Deployment](#deployment)
 - [Frontend Demo](#frontend-demo)
+- [Experiments & Abandoned Approaches](#experiments--abandoned-approaches)
 
 ## Project Overview
 
@@ -92,10 +93,13 @@ This project provides two effective methods for mapping patient conditions to CD
 
 ---
 ## Deployment
-> See the [Deployment Guide](./Deployment.md) for detailed deployment steps.
+> See the [Deployment Guide](./docs/Deployment.md) for detailed deployment steps.
 
 ## Frontend Demo
-> After deployment, see the [Streamlit Demo Guide](./StreamlitDemo.md) for detailed steps for running frontend demo.
+> After deployment, see the [Streamlit Demo Guide](./docs/StreamlitDemo.md) for detailed steps for running the frontend demo.
+
+## Experiments & Abandoned Approaches
+> Check out the [Experiments Guide](./docs/Experiments.md) to learn about exploratory ideas and approaches we tested but ultimately did not include in the final solution.
 
 
 ## Support
