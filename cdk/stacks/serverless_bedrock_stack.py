@@ -12,6 +12,8 @@ from aws_cdk import aws_ssm as ssm
 from constructs import Construct
 
 BUCKET_NAME = "dxhub-immunization-classification"
+STATIC_CDSi_KEY = "static_data/CDSi.csv"
+MODEL_ID = "anthropic.claude-3-5-sonnet-20241022-v2:0"
 
 class ServerlessBedrockStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs):
@@ -21,19 +23,19 @@ class ServerlessBedrockStack(Stack):
         ssm_bucket_param = ssm.StringParameter(
             self, "SSMBucketName",
             parameter_name="/config/BUCKET_NAME",
-            string_value=BUCKET_NAME
+            string_value= BUCKET_NAME
         )
 
         ssm_model_id_param = ssm.StringParameter(
             self, "SSMModelID",
             parameter_name="/config/MODEL_ID",
-            string_value="anthropic.claude-3-5-sonnet-20241022-v2:0"
+            string_value= MODEL_ID
         )
 
         ssm_cdsi_param = ssm.StringParameter(
             self, "SSMStaticCDSiKey",
             parameter_name="/config/STATIC_CDSi_KEY",
-            string_value="static_data/CDSi.csv"
+            string_value= STATIC_CDSi_KEY
         )
 
         #  IAM Role for Lambda with necessary permissions
