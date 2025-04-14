@@ -2,7 +2,7 @@ import streamlit as st
 from api_endpoints import call_condition_api, call_snomed_to_cdsi_api, call_condition_snomed_to_cdsi_api
 
 def condition_identifier_page():
-    st.title("Medical Condition Identifier")
+    st.title("LLM-Based Classification")
     
     if "file_key" not in st.session_state:
         st.session_state.file_key = ""
@@ -26,7 +26,7 @@ def condition_identifier_page():
         st.markdown(f"""<div style="word-wrap: break-word; white-space: pre-wrap;">{st.session_state.result}</div>""", unsafe_allow_html=True)
 
 def snomed_to_cdsi_page():
-    st.title("Direct SNOMED to CDSi Matching")
+    st.title("SNOMED-to-CDSi Mapping: Direct Mapping")
 
     # Ensure session state variables exist
     if "file_key_snomed" not in st.session_state:
@@ -65,7 +65,7 @@ def snomed_to_cdsi_page():
             st.markdown("---")  # Separator for clarity
 
 def condition_snomed_to_cdsi_page():
-    st.title("Extract SNOMED from Condition and Match to CDSi via Medical Comprehend")
+    st.title("SNOMED-to-CDSi Mapping:Extracting SNOMED Codes from Unstructured Text via Medical Comprehend")
 
     if "file_key_condition_snomed" not in st.session_state:
         st.session_state.file_key_condition_snomed = ""
