@@ -10,7 +10,8 @@ from boto3.dynamodb.types import TypeSerializer
 dynamodb = boto3.client('dynamodb')
 TABLE_NAME = "snomed-to-cdsi"
 
-CSV_FILE = "CDSi ScheduleSupportingData- Coded Observations-508_v4.60_withRSV.csv"
+# CSV_FILE = "CDSi ScheduleSupportingData- Coded Observations-508_v4.60_withRSV.csv"
+CSV_FILE = "ScheduleSupportingData- Coded Observations-508.csv"
 
 df = (pl.scan_csv(CSV_FILE)).filter((pl.col("Observation Title").is_not_null()) & (pl.col("SNOMED (Code)")).is_not_null())
 df =  df.collect()

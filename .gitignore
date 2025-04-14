@@ -2,7 +2,6 @@ scratch.txt
 /config
 files
 python
-Filtering
 
 *.swp
 package-lock.json
