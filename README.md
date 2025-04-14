@@ -41,7 +41,7 @@ Thanks for your interest in our solution.  Having specific examples of replicati
 
 ## Project Overview
 
-This project explores two main approaches for mapping patient conditions to Clinical Decision Support Immunization (CDSi) codes:
+This project explores two main approaches for mapping patient conditions to Clinical Decision Support information (CDSi) codes:
 
 1. **LLM-Based Classification**
 2. **SNOMED-to-CDSi Mapping**
