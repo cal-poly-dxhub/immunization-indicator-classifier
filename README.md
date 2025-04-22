@@ -104,6 +104,6 @@ This project provides two effective methods for mapping patient conditions to CD
 
 ## Support
 For any queries or issues, please contact:
-- Darren Kraker, Sr Solutions Architect - dkraker@amazon.com
+- Darren Kraker, Sr Solutions Architect - dkraker@amazon.com 
 - Belal Elshenety, Software Developer Intern - belshene@calpoly.edu
   
